@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.Threading;
 
-int refresh = 400; // <---- Set the refresh rate (in ms)
+int refresh = 300; // <---- Set the refresh rate (in ms)
 
 Console.OutputEncoding = Encoding.UTF8;
 

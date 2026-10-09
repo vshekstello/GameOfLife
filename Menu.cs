@@ -10,7 +10,7 @@ static class Menu
         return (width, height);
     }
 
-    static int Ask(string prompt)
+    private static int Ask(string prompt)
     {
         while (true)
         {
