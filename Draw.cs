@@ -1,5 +1,7 @@
 using System;
 
+namespace GameOfLife;
+
 // Visually draws the grid
 class GridDrawer
 {

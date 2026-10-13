@@ -1,7 +1,12 @@
-// Does the logic for the next grid
+namespace GameOfLife;
+
 class NextGeneration
 {
     public Grid Grid;
+
+    int MinNeighbors = 2;
+    int MaxNeighbors = 3;
+    int NeighborsBorn = 3;
 
     public NextGeneration(Grid current)
     {
@@ -15,13 +20,13 @@ class NextGeneration
 
                 if (new CellCheck(current, x, y).IsFull)
                 {
-                    if (n < 2) Grid.Cells[y, x] = false;            // dies - too lonely
-                    if (n > 3) Grid.Cells[y, x] = false;            // dies - overcrowded
-                    if (n == 2 || n == 3) Grid.Cells[y, x] = true;  // survives
+                    if (n < MinNeighbors) Grid.Cells[y, x] = false;   // dies - too lonely
+                    if (n > MaxNeighbors) Grid.Cells[y, x] = false;   // dies - overcrowded
+                    if (n >= MinNeighbors && n <= MaxNeighbors) Grid.Cells[y, x] = true;  // survives
                 }
                 else
                 {
-                    if (n == 3) Grid.Cells[y, x] = true;            // a cell is born
+                    if (n == NeighborsBorn) Grid.Cells[y, x] = true;       // a cell is born
                 }
             }
         }

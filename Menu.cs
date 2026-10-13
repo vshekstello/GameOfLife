@@ -1,5 +1,7 @@
 using System;
 
+namespace GameOfLife;
+
 static class Menu
 {
     public static (int width, int height) AskSize()

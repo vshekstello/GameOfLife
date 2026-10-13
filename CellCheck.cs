@@ -1,3 +1,5 @@
+namespace GameOfLife;
+
 // Checks if the cell is alive or dead, ignores everything outside of the grid
 class CellCheck
 {

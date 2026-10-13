@@ -1,3 +1,5 @@
+namespace GameOfLife;
+
 // Holds the size and the cells
 class Grid
 {
