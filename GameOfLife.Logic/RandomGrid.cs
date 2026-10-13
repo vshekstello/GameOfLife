@@ -3,7 +3,7 @@ using System;
 namespace GameOfLife;
 
 // Creates a grid filled with a randomized assortment of cells
-class RandomGrid
+public class RandomGrid
 {
     public Grid Grid;
 
