@@ -1,7 +1,7 @@
 namespace GameOfLife;
 
 // Counts total neighbors
-class NeighborCount
+public class NeighborCount
 {
     public int Count;
 

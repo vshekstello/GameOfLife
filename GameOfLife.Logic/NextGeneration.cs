@@ -1,6 +1,6 @@
 namespace GameOfLife;
 
-class NextGeneration
+public class NextGeneration
 {
     public Grid Grid;
 

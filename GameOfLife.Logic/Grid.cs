@@ -1,7 +1,7 @@
 namespace GameOfLife;
 
 // Holds the size and the cells
-class Grid
+public class Grid
 {
     public int Width;
     public int Height;
