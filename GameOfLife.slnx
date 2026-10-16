@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="GameOfLife.ConsoleApp/GameOfLife.ConsoleApp.csproj" />
-  <Project Path="GameOfLife.Logic/GameOfLife.Logic.csproj" />
-</Solution>
