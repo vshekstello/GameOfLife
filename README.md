@@ -1,4 +1,4 @@
-## Screenshots
+# Terminal Screenshots
 
 -- Game menu --
 ![Size menu](docs/images/menu.png)
