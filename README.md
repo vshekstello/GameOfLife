@@ -22,11 +22,11 @@
     - Displays total amount of living cells
 
 4. Information manual, informs user of keybinds:
-    1-8 - picks a slot to display any game of choice based off its id,
-    A - adds a number of games based off the users input,
-    D - deletes a game based off the users input,
-    S - saves current generation of all games to a file that can later be launched again,
-    Q - quits the terminal
+    - 1-8 - picks a slot to display any game of choice based off its id,
+    - A - adds a number of games based off the users input,
+    - D - deletes a game based off the users input,
+    - S - saves current generation of all games to a file that can later be launched again,
+    - Q - quits the terminal
 
 
 
