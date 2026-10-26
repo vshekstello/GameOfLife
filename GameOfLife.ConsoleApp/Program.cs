@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using GameOfLife;
 
+const int refresh = 200;
 // Every game uses this size. Bigger grids need a wider terminal.
 const int GridWidth = 12;
 const int GridHeight = 8;
@@ -55,6 +56,6 @@ while (!controls.Quit)
     simulation.Step();
 
     // Wait out whatever is left of the 100 ms
-    int wait = 100 - (int)timer.ElapsedMilliseconds;
+    int wait = refresh - (int)timer.ElapsedMilliseconds;
     if (wait > 0) Thread.Sleep(wait);
 }
