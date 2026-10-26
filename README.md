@@ -1,13 +1,16 @@
 ### Terminal Screenshots
 
--- Game menu --
+INITIAL MENU
 ![Menu](docs/images/inputfield.png)
+
 1. Input field: 
     - User may input the amount of desired games to be generated
 
 
--- Running games --
+
+RUNNING GAME
 ![Game running](docs/images/game.png)
+
 2. Game field display:
     - Displays 8 game generations simultaneously,
     - Displays the ID number of each game,
@@ -25,7 +28,11 @@
     S - saves current generation of all games to a file that can later be launched again,
     Q - quits the terminal
 
+
+
+SAVED GAME MENU
 ![Save menu](docs/images/savemenu.png)
+
 5. Save input field:
     - Prompts user to choose between launching a saved game or creating a new one
 
