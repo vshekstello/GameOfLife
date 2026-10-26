@@ -1,6 +1,6 @@
-### Terminal Screenshots
+## Terminal Screenshots
 
-INITIAL MENU
+### INITIAL MENU
 ![Menu](docs/images/inputfield.png)
 
 1. Input field: 
@@ -8,7 +8,7 @@ INITIAL MENU
 
 
 
-RUNNING GAME
+### RUNNING GAME
 ![Game running](docs/images/game.png)
 
 2. Game field display:
@@ -30,7 +30,7 @@ RUNNING GAME
 
 
 
-SAVED GAME MENU
+### SAVED GAME MENU
 ![Save menu](docs/images/savemenu.png)
 
 5. Save input field:
