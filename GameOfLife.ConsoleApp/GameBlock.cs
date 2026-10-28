@@ -8,7 +8,6 @@ class GameBlock
     int gridWidth;
     int gridHeight;
 
-    // The constructor only stores what the block needs
     public GameBlock(Game? game, int slot, int gridWidth, int gridHeight)
     {
         this.game = game;

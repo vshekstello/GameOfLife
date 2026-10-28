@@ -1,6 +1,6 @@
 namespace GameOfLife;
 
-// Keybinds
+// Keybinds, as seen in the app terminal (can be changed here)
 static class ControlKeys
 {
     public const char FirstSlot = '1';

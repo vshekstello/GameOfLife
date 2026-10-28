@@ -2,7 +2,7 @@ using System;
 
 namespace GameOfLife;
 
-// Visually draws the grid
+// draws the grid
 class GridDrawer
 {
     public GridDrawer(Grid grid, int generation)
@@ -33,7 +33,7 @@ class GridDrawer
             }
             Console.WriteLine("|" + string.Concat(row) + "|");
         }
-        Console.WriteLine(border);
+        Console.WriteLine(border); // Additional instructions
         Console.WriteLine($"Living/dead cells: {living}/{dead}");
         Console.WriteLine("Ctrl + C to quit");
     }

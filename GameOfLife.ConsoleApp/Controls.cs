@@ -36,7 +36,7 @@ class Controls
         FillEmptySlots();
     }
 
-    // Call this once for every key the user presses
+    // Calls this once for every key the user presses
     public void Handle(ConsoleKeyInfo key)
     {
         if (mode == InputMode.None) StartCommand(key);

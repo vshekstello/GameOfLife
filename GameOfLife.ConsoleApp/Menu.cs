@@ -55,7 +55,7 @@ static class Menu
     {
         Console.WriteLine("=== Game of Life ===");
 
-        // Keep asking until the number is allowed (Enter alone uses the default)
+        // Keep asking until the number is allowed (Enter uses the default)
         while (true)
         {
             Console.Write($"How many games to start with (1-{Simulation.MaxGames}, default 100): ");
