@@ -47,26 +47,26 @@ class Controls
     {
         char c = char.ToUpper(key.KeyChar);
 
-        if (c >= '1' && c <= '8')
+        if (c >= ControlKeys.FirstSlot && c <= ControlKeys.LastSlot)
         {
-            pickedSlot = c - '1';
+            pickedSlot = c - ControlKeys.FirstSlot;
             Ask(InputMode.PickGame, $"Show which game id in slot {pickedSlot + 1}? ");
         }
-        else if (c == 'A')
+        else if (c == ControlKeys.AddGames)
         {
             int room = Simulation.MaxGames - simulation.Games.Count;
             if (room <= 0) Message = $"Cannot add more: the limit is {Simulation.MaxGames} games.";
             else Ask(InputMode.AddGames, $"How many games to add (up to {room})? ");
         }
-        else if (c == 'D') Ask(InputMode.DeleteGame, "Which game id to delete? ");
-        else if (c == 'S')
+        else if (c == ControlKeys.DeleteGame) Ask(InputMode.DeleteGame, "Which game id to delete? ");
+        else if (c == ControlKeys.Save)
         {
             // The file name contains the id of this run, e.g. savegame_3.txt
             var file = new SaveFile(saveFolder, simulation.SessionId);
             new SaveAllGames(simulation, file);
             Message = $"All games saved as {file.FileName}.";
         }
-        else if (c == 'Q') Quit = true;
+        else if (c == ControlKeys.Quit) Quit = true;
     }
 
     void Ask(InputMode newMode, string question)

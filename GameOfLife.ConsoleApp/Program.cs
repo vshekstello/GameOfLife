@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Threading;
 using GameOfLife;
 
-const int refresh = 200;
 // Every game uses this size. Bigger grids need a wider terminal.
 const int GridWidth = 12;
 const int GridHeight = 8;
@@ -40,6 +39,7 @@ while (simulation == null)
 
 var slots = new int[8]; // the game id shown in each of the 8 slots
 var controls = new Controls(simulation, slots, saveFolder);
+var drawer = new GamesDrawer(simulation, slots);
 
 Console.Clear();
 
@@ -48,7 +48,7 @@ while (!controls.Quit)
     var timer = Stopwatch.StartNew();
 
     Console.SetCursorPosition(0, 0);
-    new GamesDrawer(simulation, slots, controls.Message);
+    drawer.Draw(controls.Message);
 
     while (Console.KeyAvailable)
         controls.Handle(Console.ReadKey(true));
@@ -56,6 +56,6 @@ while (!controls.Quit)
     simulation.Step();
 
     // Wait out whatever is left of the 100 ms
-    int wait = refresh - (int)timer.ElapsedMilliseconds;
+    int wait = 100 - (int)timer.ElapsedMilliseconds;
     if (wait > 0) Thread.Sleep(wait);
 }
