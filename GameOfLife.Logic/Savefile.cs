@@ -12,7 +12,7 @@ public class SaveFile
     public int Id;
     public string FileName;
     public string FullPath;
-    public int GameCount;   // -1 if the file could not be read
+    public int GameCount;
     public int LiveGames;   // games with at least one living cell, -1 if the file could not be read
     public DateTime Saved;
 

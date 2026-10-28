@@ -1,6 +1,6 @@
 namespace GameOfLife;
 
-// The status texts shown on screen for a game
+// The status texts shown on screen for a game (alive(blank)/dead/still)
 static class GameStatus
 {
     public const string Active = "";                  // a running game shows no status text
