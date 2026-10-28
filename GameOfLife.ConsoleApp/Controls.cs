@@ -36,7 +36,7 @@ class Controls
         FillEmptySlots();
     }
 
-    // Calls this once for every key the user presses
+    // Call this once for every key the user presses
     public void Handle(ConsoleKeyInfo key)
     {
         if (mode == InputMode.None) StartCommand(key);
@@ -47,26 +47,38 @@ class Controls
     {
         char c = char.ToUpper(key.KeyChar);
 
-        if (c >= ControlKeys.FirstSlot && c <= ControlKeys.LastSlot)
+        switch (c)
         {
-            pickedSlot = c - ControlKeys.FirstSlot;
-            Ask(InputMode.PickGame, $"Show which game id in slot {pickedSlot + 1}? ");
+            case >= ControlKeys.FirstSlot and <= ControlKeys.LastSlot:
+                pickedSlot = c - ControlKeys.FirstSlot;
+                Ask(InputMode.PickGame, $"Show which game id in slot {pickedSlot + 1}? ");
+                break;
+
+            case ControlKeys.AddGames:
+            {
+                int room = Simulation.MaxGames - simulation.Games.Count;
+                if (room <= 0) Message = $"Cannot add more: the limit is {Simulation.MaxGames} games.";
+                else Ask(InputMode.AddGames, $"How many games to add (up to {room})? ");
+                break;
+            }
+
+            case ControlKeys.DeleteGame:
+                Ask(InputMode.DeleteGame, "Which game id to delete? ");
+                break;
+
+            case ControlKeys.Save:
+            {
+                // The file name contains the id of this run, e.g. savegame_3.txt
+                var file = new SaveFile(saveFolder, simulation.SessionId);
+                new SaveAllGames(simulation, file);
+                Message = $"All games saved as {file.FileName}.";
+                break;
+            }
+
+            case ControlKeys.Quit:
+                Quit = true;
+                break;
         }
-        else if (c == ControlKeys.AddGames)
-        {
-            int room = Simulation.MaxGames - simulation.Games.Count;
-            if (room <= 0) Message = $"Cannot add more: the limit is {Simulation.MaxGames} games.";
-            else Ask(InputMode.AddGames, $"How many games to add (up to {room})? ");
-        }
-        else if (c == ControlKeys.DeleteGame) Ask(InputMode.DeleteGame, "Which game id to delete? ");
-        else if (c == ControlKeys.Save)
-        {
-            // The file name contains the id of this run, e.g. savegame_3.txt
-            var file = new SaveFile(saveFolder, simulation.SessionId);
-            new SaveAllGames(simulation, file);
-            Message = $"All games saved as {file.FileName}.";
-        }
-        else if (c == ControlKeys.Quit) Quit = true;
     }
 
     void Ask(InputMode newMode, string question)
@@ -80,26 +92,24 @@ class Controls
     // Collects the digits of a number until Enter (Esc cancels)
     void TypeNumber(ConsoleKeyInfo key)
     {
-        if (key.Key == ConsoleKey.Escape)
+        switch (key.Key)
         {
-            mode = InputMode.None;
-            Message = "Cancelled.";
-            return;
-        }
+            case ConsoleKey.Escape:
+                mode = InputMode.None;
+                Message = "Cancelled.";
+                return;
 
-        if (key.Key == ConsoleKey.Enter)
-        {
-            Finish();
-            return;
-        }
+            case ConsoleKey.Enter:
+                Finish();
+                return;
 
-        if (key.Key == ConsoleKey.Backspace)
-        {
-            if (typed.Length > 0) typed = typed.Substring(0, typed.Length - 1);
-        }
-        else if (char.IsDigit(key.KeyChar) && typed.Length < 6)
-        {
-            typed += key.KeyChar;
+            case ConsoleKey.Backspace:
+                if (typed.Length > 0) typed = typed.Substring(0, typed.Length - 1);
+                break;
+
+            default:
+                if (char.IsDigit(key.KeyChar) && typed.Length < 6) typed += key.KeyChar;
+                break;
         }
 
         Message = prompt + typed;
@@ -117,39 +127,41 @@ class Controls
             return;
         }
 
-        if (finished == InputMode.PickGame)
+        switch (finished)
         {
-            if (simulation.FindGame(number) == null)
-            {
-                Message = $"There is no game with id {number}.";
-            }
-            else
-            {
-                slots[pickedSlot] = number;
-                Message = $"Slot {pickedSlot + 1} now shows game {number}.";
-            }
-        }
+            case InputMode.PickGame:
+                if (simulation.FindGame(number) == null)
+                {
+                    Message = $"There is no game with id {number}.";
+                }
+                else
+                {
+                    slots[pickedSlot] = number;
+                    Message = $"Slot {pickedSlot + 1} now shows game {number}.";
+                }
+                break;
 
-        if (finished == InputMode.AddGames)
-        {
-            int added = simulation.AddRandomGames(number);
-            FillEmptySlots();
-
-            if (added == number) Message = $"Added {added} games.";
-            else Message = $"Added {added} games (limit of {Simulation.MaxGames} reached).";
-        }
-
-        if (finished == InputMode.DeleteGame)
-        {
-            if (simulation.RemoveGame(number))
+            case InputMode.AddGames:
             {
+                int added = simulation.AddRandomGames(number);
                 FillEmptySlots();
-                Message = $"Deleted game {number}.";
+
+                if (added == number) Message = $"Added {added} games.";
+                else Message = $"Added {added} games (limit of {Simulation.MaxGames} reached).";
+                break;
             }
-            else
-            {
-                Message = $"There is no game with id {number}.";
-            }
+
+            case InputMode.DeleteGame:
+                if (simulation.RemoveGame(number))
+                {
+                    FillEmptySlots();
+                    Message = $"Deleted game {number}.";
+                }
+                else
+                {
+                    Message = $"There is no game with id {number}.";
+                }
+                break;
         }
     }
 
